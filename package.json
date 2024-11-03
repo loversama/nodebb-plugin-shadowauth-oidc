@@ -65,6 +65,7 @@
     ]
   },
   "scripts": {
-    "prepare": "tsc"
+    "prepare": "tsc",
+    "build": "tsc"
   }
 }
