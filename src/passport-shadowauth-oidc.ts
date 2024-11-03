@@ -46,7 +46,7 @@ export class PassportOIDC extends OAuth2Strategy {
             return done(new Error('Missing token, cannot call the userinfo endpoint without it.'));
         }
 
-        this._oauth2.useAuthorizationHeaderforGET(true);
+        (this as any)._oauth2.useAuthorizationHeaderforGET(true);
         this._oauth2.get(this.settings.userInfoEndpoint, accessToken, (err, body, res) => {
             if (err) {
                 console.error('Failed to fetch user profile:', err);
