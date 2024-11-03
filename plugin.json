@@ -1,0 +1,41 @@
+{
+  "id": "nodebb-plugin-shadowauth-oidc",
+  "name": "OpenID Connect Plugin for NodeBB",
+  "description": "Authenticate to shadowauth or any OpenID Connect identity provider.",
+  "url": "https://github.com/shadowauth/nodebb-plugin-shadowauth-oidc",
+  "library": "./library.js",
+  "templates": "templates",
+  "hooks": [
+    {
+      "hook": "static:app.load",
+      "method": "init"
+    },
+    {
+      "hook": "static:user.delete",
+      "method": "deleteUserData"
+    },
+    {
+      "hook": "filter:user.whitelistFields",
+      "method": "whitelistFields"
+    },
+    {
+      "hook": "filter:auth.init",
+      "method": "bindStrategy"
+    },
+    {
+      "hook": "filter:admin.header.build",
+      "method": "bindMenuOption"
+    },
+    {
+      "hook": "action:settings.set",
+      "method": "bindStrategy"
+    },
+    {
+      "hook": "filter:user.logout",
+      "method": "redirectLogout"
+    }
+  ],
+  "modules": {
+    "../admin/plugins/shadowauth-oidc.js": "static/lib/admin.js"
+  }
+}
